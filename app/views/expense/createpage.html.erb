@@ -15,7 +15,7 @@
 
 <div>
 <%= form.label :"Invoice Id"%>
-<%= form.text_field :invoice_id %>
+<%= form.number_field :invoice_id %>
 </div>
 
 <div>
@@ -41,6 +41,6 @@
 
 <%= form.submit "Add"%>
 <%= link_to "Back",:back%>
-<%= link_to "Log In" %>
+<%= link_to "Log In","/signin" %>
 <%end%>
 </div>

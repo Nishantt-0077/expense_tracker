@@ -1,28 +1,28 @@
 class ExpenseController < ApplicationController
     def create
-        @cr=Expense.new(
-            user_id:params[:user_id],
-            invoice_id:params[:invoice_id],
-            date:params[:date],
-            desc:params[:desc],
-            amount:params[:amount],
-            status:"In Queue",
-            doc:params[:doc]
-        )
-        chck=apiresponse(@cr.invoice_id)
-        if(chck==true)
-            if(@cr.save)
-                flash.now[:notice]="Expense Added"
-                redirect_to "/userpage/#{@cr.user_id}"
-            else
-                flash.now[:notice]="Try Again"
-            end
+        @cr=Expense.new()
+            @cr.user_id=params[:user_id]
+            @cr.invoice_id=params[:invoice_id]
+            @cr.date=params[:date]
+            @cr.desc=params[:desc]
+            @cr.amount=params[:amount]
+            @cr.status="In Queue"
+            @cr.doc=params[:doc]
+        
+        chck=apiresponse(params[:invoice_id].to_i)
+        puts params[:invoice_id]
+        puts chck
+        if(chck["status"])
+            @cr.status="In Queue"
+            @cr.save
+            redirect_to "/userpage/#{@cr.user_id}"
         else
             @cr.status="Rejected"
             @cr.save
+            redirect_to "/userpage/#{@cr.user_id}"
         end
 
-        redirect_to "/userpage/#{@cr.user_id}"
+        
 
     end
      
@@ -85,12 +85,11 @@ class ExpenseController < ApplicationController
          #send_data @vd.doc, :type => 'img/png', :disposition => 'inline'
     end
 
-    def apiresponse(invoicenum)
+    def apiresponse(invoice_id)
         require 'net/http'
         api_key ='b490bb80'
         uri='https://my.api.mockaroo.com/invoices.json'
-        res=Net::HTTP.post(URI('https://my.api.mockaroo.com/invoices.json'), {"invoice_id" => invoicenum}.to_json, 'X-API-Key' => "b490bb80")
-        puts (res.body)
+        res=Net::HTTP.post URI('https://my.api.mockaroo.com/invoices.json'), {"invoice_id" => invoice_id}.to_json, 'X-API-Key' => "b490bb80"
         return JSON.parse(res.body)
         
     end

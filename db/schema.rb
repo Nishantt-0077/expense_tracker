@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_17_093120) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_20_120518) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,7 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_093120) do
 
   create_table "expenses", force: :cascade do |t|
     t.integer "user_id"
-    t.string "invoice_id"
     t.string "date"
     t.string "desc"
     t.integer "amount"
@@ -57,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_093120) do
     t.datetime "updated_at", null: false
     t.string "status"
     t.binary "doc"
+    t.integer "invoice_id"
   end
 
   create_table "users", force: :cascade do |t|
