@@ -1,0 +1,13 @@
+<div style="width:100%; height:100%; display:flex; justify-content:center; margin-top:12%; ">
+    <div style="border-style:solid;padding:50px">
+<h1>Details</h1>
+
+<p><strong>Name:</strong><%= @x.name%>
+<p><strong>Email:</strong><%= @x.email%>
+<p><strong>Department:</strong><%= @x.department%>
+<p><strong>Password:</strong><%= @x.password%>
+<p><strong>Status:</strong><%= @x.status%>
+<br>
+<br>
+<%= link_to "View Expense", "/viewexpense/#{@x.id}"%>
+</div>

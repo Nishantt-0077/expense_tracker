@@ -1,0 +1,81 @@
+<h1>Expense Details:</h1>
+
+
+<table>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+</head>
+   <tr>
+        
+        <th>Invoice Id:&nbsp; &nbsp; &nbsp;</th>
+        <th>Date:&nbsp; &nbsp; &nbsp;</th>
+        <th>Amount:&nbsp; &nbsp; &nbsp;</th>
+        <th>Description:&nbsp; &nbsp; &nbsp;</th>
+        <th>Status:&nbsp; &nbsp; &nbsp;</th>
+    </tr>
+</thead>
+<tbody>
+   
+         <tr>
+
+            <td style="color:maroon;"><%= @v.invoice_id%></td>
+            <td><%= @v.date%></td>
+            <td><%= @v.amount%></td>
+            <td><%= @v.desc%></td>
+            <td><%= @v.status%>&nbsp; &nbsp; &nbsp;</td>
+
+            
+            
+            
+        </tr>
+        
+    
+</tbody>
+</table>
+
+<h2>Comments:</h2>
+
+<table style="width:100%">
+  <% @comm.each do |x|%>
+         <tr>
+        
+            <th><%= x.user_name %></th>
+            <td><%= x.desc %></td>
+            
+            
+                    <td><button><%= link_to 'Delete', "/commdelete/#{x.id}",method: :delete, data: { confirm: 'Are you sure?' } %> </button></td>
+            
+            
+        </tr>
+        <%end%>
+</table>
+
+
+
+
+
+
+
+    <%= form_with url: "/addcomment" do |form|%>
+        <table style="width:100%">
+        <tr>
+            <td><%= form.text_area :desc %></td>
+            <%= form.hidden_field :expense_id,value: @v.id%>
+            <%= form.hidden_field :user_name,value: @comm_user.name%>
+            <th><%= form.submit "Submit"%></th>
+            
+            
+        </tr>
+        </table>
+    <%end%>
+
+

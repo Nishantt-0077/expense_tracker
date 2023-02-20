@@ -1,0 +1,37 @@
+<div style="width:100%; height:100%; display:flex; justify-content:center; margin-top:12%; ">
+    <div style="border-style:solid;padding:50px">
+<h1>Expenses for <%= @u.name%></h1>
+
+
+<table>
+<head>
+   <tr>
+        <th>Invoice Id:&nbsp; &nbsp; &nbsp;</th>
+        <th>Date:&nbsp; &nbsp; &nbsp;</th>
+        <th>Amount:&nbsp; &nbsp; &nbsp;</th>
+        <th>Description:&nbsp; &nbsp; &nbsp;</th>
+        <th>Status:&nbsp; &nbsp; &nbsp;</th>
+    </tr>
+</thead>
+<tbody>
+   <% @exp.each do |x|%>
+         <tr>
+            <td style="color:maroon;"><%= x.invoice_id%></td>
+            <td><%= x.date%></td>
+            <td><%= x.amount%></td>
+            <td><%= x.desc%></td>
+            <td><%= x.status%>&nbsp; &nbsp; &nbsp;</td>
+
+            <td><button><%= link_to 'View', "/viewexpense/view/#{x.id}" %> </button> &nbsp; &nbsp; &nbsp;</td>
+            <td><button><%= link_to 'Approve', "/approve/#{x.id}" %> </button> &nbsp; &nbsp; &nbsp;</td></button>
+           <td><button><%= link_to 'Reject', "/reject/#{x.id}",method: :delete, data: { confirm: 'Are you sure?' } %> </button> &nbsp; &nbsp; &nbsp;</td></button>
+           <td><td><button><%= link_to 'View Document', "/viewdoc/#{x.id}" %> </button> &nbsp; &nbsp; &nbsp;</td></button></td>
+
+            
+            
+        </tr>
+        <%end%>
+    
+</tbody>
+</table>
+</div>

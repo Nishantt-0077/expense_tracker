@@ -1,0 +1,53 @@
+<h1>Expenses for <%= @u.name%></h1>
+
+
+<table>
+<head>
+
+   <tr>
+        <th>Id:&nbsp; &nbsp; &nbsp;</th>
+        <th>Invoice Id:&nbsp; &nbsp; &nbsp;</th>
+        <th>Date:&nbsp; &nbsp; &nbsp;</th>
+        <th>Amount:&nbsp; &nbsp; &nbsp;</th>
+        <th>Description:&nbsp; &nbsp; &nbsp;</th>
+        <th>Status:&nbsp; &nbsp; &nbsp;</th>
+    </tr>
+</thead>
+<tbody>
+   <% @exp.each do |x|%>
+         <tr>
+            <td><%= x.user_id%></td>
+            <td style="color:maroon;"><%= x.invoice_id%></td>
+            <td><%= x.date%></td>
+            <td><%= x.amount%></td>
+            <td><%= x.desc%></td>
+            <td><%= x.status%>&nbsp; &nbsp; &nbsp;</td>
+
+            <td><button><%= link_to 'View', "/view/#{x.id}" %> </button> &nbsp; &nbsp; &nbsp;</td>
+            <td><button><%= link_to 'Edit', "/edit/#{x.id}" %> </button> &nbsp; &nbsp; &nbsp;</td></button>
+           <td><button><%= link_to 'Delete', "/delete/#{x.id}",method: :delete, data: { confirm: 'Are you sure?' } %> </button> &nbsp; &nbsp; &nbsp;</td></button>
+            
+            
+        </tr>
+        <%end%>
+    
+</tbody>
+</table>
+
+
+<h2>Vertical Headings:</h2>
+
+<table style="width:100%">
+  <tr>
+    <th>Name:</th>
+    <td>Bill Gates</td>
+  </tr>
+  <tr>
+    <th>Telephone:</th>
+    <td>555 77 854</td>
+  </tr>
+  <tr>
+    <th>Telephone:</th>
+    <td>555 77 855</td>
+  </tr>
+</table>

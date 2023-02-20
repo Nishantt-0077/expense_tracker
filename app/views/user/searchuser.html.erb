@@ -1,0 +1,44 @@
+<h1>User Details:</h1>
+<table>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+   <tr>
+        <th>Id:</th>
+        <th>Name:</th>
+        <th>Email:</th>
+        <th>Department:</th>
+        <th>Password:</th>
+        <th>Status:</th>
+        <th>User Type:</th>
+    </tr>
+</thead>
+<tbody>
+   <% @get_u.each do |x|%>
+         <tr>
+            <td><%= x.id%></td>
+            <td style="color:maroon;"><%= x.name %></td>
+            <td><%= x.email %></td>
+            <td><%= x.department%></td>
+            <td><%= x.password%></td>
+            <td><%= x.status%></td>
+            <td><%= x.u_kind%></td>
+            <td><%= link_to 'View', "/view/#{x.id}" %></td>
+            <td><%= link_to 'Edit', "/edit/#{x.id}" %></td>
+            <td><%= link_to 'Delete', "/delete/#{x.id}",method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+            
+            
+        </tr>
+        <%end%>
+    
+</tbody>
+</table>
+<h2 style=""><strong><%= link_to 'Add User',"/adduser"%></strong></h2>

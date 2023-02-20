@@ -1,0 +1,35 @@
+<div style="width:100%; height:100%; display:flex; justify-content:center; margin-top:12%; ">
+    <div style="border-style:solid;padding:50px">
+<h1>Your Expenses </h1>
+
+
+<table>
+<head>
+   <tr>
+        <th>Invoice Id:&nbsp; &nbsp; &nbsp;</th>
+        <th>Date:&nbsp; &nbsp; &nbsp;</th>
+        <th>Amount:&nbsp; &nbsp; &nbsp;</th>
+        <th>Description:&nbsp; &nbsp; &nbsp;</th>
+        <th>Status:&nbsp; &nbsp; &nbsp;</th>
+    </tr>
+</thead>
+<tbody>
+   <% @rp.each do |x|%>
+         <tr>
+            
+            <td style="color:maroon;"><%= x.invoice_id%></td>
+            <td><%= x.date%></td>
+            <td><%= x.amount%></td>
+            <td><%= x.desc%></td>
+            <td><%= x.status%></td>
+            
+
+           
+            
+        </tr>
+        <%end%>
+    
+</tbody>
+</table>
+<h2>Total Expenses Amount: <%= @sum%></h2>
+</div>
