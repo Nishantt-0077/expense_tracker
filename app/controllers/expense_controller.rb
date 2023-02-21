@@ -17,7 +17,7 @@ class ExpenseController < ApplicationController
             @cr.save
             redirect_to "/userpage/#{@cr.user_id}"
         else
-            @cr.status="Rejected"
+            @cr.status="Rejected by Invoice System"
             @cr.save
             redirect_to "/userpage/#{@cr.user_id}"
         end
@@ -61,17 +61,19 @@ class ExpenseController < ApplicationController
 
     def approve
         ap=Expense.find(params[:id])
+        usr=User.find(ap.user_id)
         ap.status="Reimbursed"
         ap.save
-        UserMailer.send_expense_approve_mail(ap.invoice_id).deliver_now
+        UserMailer.send_expense_approve_mail(ap.invoice_id,usr.email).deliver_now
         redirect_to "/viewexpense/#{ap.user_id}"
     end
 
     def reject
         rj=Expense.find(params[:id])
+        usr=User.find(rj.user_id)
         rj.status="Rejected"
         rj.save
-        UserMailer.send_expense_reject_mail(rj.invoice_id).deliver_now
+        UserMailer.send_expense_reject_mail(rj.invoice_id,usr.email).deliver_now
         redirect_to "/viewexpense/#{rj.user_id}"
     end
 

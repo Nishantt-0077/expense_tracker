@@ -39,8 +39,9 @@ class UserController < ApplicationController
     end
 
     def pedit
-        @ed=User.find_by(email: params[:email])
-
+        # @ed=User.find_by(email: params[:email])
+        @ed=User.find(params[:id])
+        
         @ed.name=params[:name]
         @ed.email=params[:email]
         @ed.department=params[:department]
@@ -48,7 +49,7 @@ class UserController < ApplicationController
         @ed.status=params[:status]
 
         if(@ed.save)
-            redirect_to "/userpage"
+            redirect_to "/admin"
         end
     end
 

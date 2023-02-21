@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  root "user#signin"
   get "signin" ,to: "user#signin"
   post "signin",to: "user#sign"
 

@@ -3,7 +3,7 @@
 <h1>Edit User</h1>
 <%= form_with url: "/pedit" do |form|%>
 
-
+<%= form.hidden_field :id,value: @y.id%>
 <div>
     <%= form.label :Name%>
     <%= form.text_field :name,value: @y.name %>

@@ -7,8 +7,10 @@ class CommentController < ApplicationController
                 desc:params[:desc]
             )
             us=User.find(session[:user_id])
+            exp_f=Expense.find(cm.expense_id)
+            usr=User.find(exp_f.user_id)
             if(us.u_kind=="admin") 
-                UserMailer.send_comment_added_mail.deliver_now
+                UserMailer.send_comment_added_mail(usr.email,cm.desc).deliver_now
             end
             redirect_to "/view/viewexpense/view/#{cm.expense_id}"
          end
