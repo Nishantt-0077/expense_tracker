@@ -11,9 +11,13 @@ class UserController < ApplicationController
         if(@usr.present? && @usr.password==params[:password])
            session[:user_id]=@usr.id 
            if(@usr.u_kind=="admin")
-                redirect_to "/admin",notice: "Logged in Successfully"
+                @isAdmin = true
+                @user_id = @usr.id
+                render :signin
            else
-                redirect_to "/userpage/#{@usr.id}"
+                @isAdmin = false
+                @user_id = @usr.id
+                render :signin
            end
         else
             flash[:alert]="Invalid Email or Password"
@@ -22,12 +26,12 @@ class UserController < ApplicationController
     end
 
     def admin
-        if(session[:user_id])
+       
             @up=User.all
-        else
+        
            # flash.now[:notice]="Please Log in"
-           redirect_to "/req"
-        end
+           
+        
     end
 
     def view 

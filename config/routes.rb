@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   post "/createexp",to: "expense#create"
   get "/viewexpense/:id",to: "expense#viewexpense"
   get "/viewexpenseuser/:id",to: "expense#viewexpenseuser"
-  get "viewdoc/:id",to: "expense#viewdoc"
+  get "/viewdoc/:id",to: "expense#viewdoc"
   get "/viewexpense/report/:id" ,to: "expense#report"
 
   get "viewexpense/view/:id",to: "expense#view"

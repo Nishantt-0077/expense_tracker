@@ -7,7 +7,7 @@ class ExpenseController < ApplicationController
             @cr.desc=params[:desc]
             @cr.amount=params[:amount]
             @cr.status="In Queue"
-            @cr.doc=params[:doc]
+            @cr.document=params[:doc]
         
         chck=apiresponse(params[:invoice_id].to_i)
         puts params[:invoice_id]
@@ -28,6 +28,7 @@ class ExpenseController < ApplicationController
      
     def viewexpense
         @u=User.find(params[:id])
+        @u_name=@u.name
         @exp=Expense.where(user_id: @u.id)
         if(@exp.present?)
             render:viewexpense
@@ -54,7 +55,7 @@ class ExpenseController < ApplicationController
     end
 
     def viewuser 
-        @comm_user=User.find(session[:user_id])
+        # @comm_user=User.find(session[:user_id])
         @v=Expense.find(params[:id])
         @comm=Comment.where(expense_id: @v.id)
     end
